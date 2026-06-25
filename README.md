@@ -2,6 +2,10 @@
 
 > Reverse engineer modern software products using AI.
 
+Developers often ask 'How was this product built?' when looking at products like Instagram, GitHub,
+Airbnb or YouTube. ArchitectAI automates this investigation by combining web crawling, AI vision,
+and architectural reasoning.
+
 ArchitectAI is an AI-powered platform that analyzes publicly accessible websites and generates an inferred software architecture report. Instead of inspecting source code, it studies a website's user interface and behavior to predict how the product is likely designed and implemented.
 
 Simply provide a website URL, and ArchitectAI automatically discovers pages, detects features, reconstructs user journeys, infers backend architecture and database design, estimates infrastructure requirements, and recommends a suitable technology stack.
