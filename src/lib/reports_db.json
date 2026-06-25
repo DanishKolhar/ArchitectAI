@@ -1938,16 +1938,104 @@
   "example.com": {
     "id": "example.com",
     "url": "https://example.com",
-    "name": "Example",
+    "name": "Example Domain",
+    "industry": "Web Development & Documentation",
+    "productType": "Informational Placeholder / Documentation Example",
+    "pagesCount": 1,
+    "featuresCount": 0,
+    "timestamp": "2026-06-25 11:23:19",
+    "pages": [
+      {
+        "name": "Placeholder Page",
+        "purpose": "To inform visitors that this domain is intended for documentation examples and should not be used for live operations.",
+        "screenshotDesc": "A minimalist, centered layout with a bold heading 'Example Domain', followed by a descriptive paragraph explaining its purpose, and a 'Learn more' hyperlink."
+      }
+    ],
+    "features": [],
+    "flowNodes": [],
+    "flowEdges": [],
+    "services": [],
+    "tables": [],
+    "infraMetrics": [
+      {
+        "label": "Estimated Monthly Active Users",
+        "value": "30k",
+        "description": "Small SaaS / landing page scale capacity"
+      },
+      {
+        "label": "Storage Size Requirement",
+        "value": "100 GB",
+        "description": "Minimal asset uploads hosting requirements"
+      },
+      {
+        "label": "Bandwidth Capacity",
+        "value": "80 Mbps",
+        "description": "Static page deliverable CDN bandwidth limits"
+      },
+      {
+        "label": "Estimated Database Nodes",
+        "value": "1 Node",
+        "description": "Single standalone cloud Postgres server instance"
+      }
+    ],
+    "costs": [
+      {
+        "category": "Compute",
+        "resource": "Virtual server instance (e.g. AWS EC2 t3.medium)",
+        "cost": 20
+      },
+      {
+        "category": "Database",
+        "resource": "AWS RDS Single-AZ instance",
+        "cost": 15
+      },
+      {
+        "category": "Storage & CDN",
+        "resource": "AWS S3 + CloudFront data transfer rates",
+        "cost": 10
+      },
+      {
+        "category": "Monitoring & Logs",
+        "resource": "Basic server metrics & alerts",
+        "cost": 5
+      }
+    ],
+    "techStack": [
+      {
+        "category": "Frontend",
+        "name": "HTML/CSS",
+        "reason": "The page displays basic text content and a hyperlink, consistent with standard static HTML and minimal CSS styling for presentation."
+      },
+      {
+        "category": "Web Server",
+        "name": "Generic Web Server",
+        "reason": "Serving a static HTML page requires a basic web server (e.g., Apache, Nginx), but no specific advanced features are discernible."
+      }
+    ]
+  },
+  "pinterest.com": {
+    "id": "pinterest.com",
+    "url": "https://pinterest.com",
+    "name": "Pinterest",
     "industry": "Technology & Web Services",
     "productType": "Dynamic Web Application & Platform Portal",
-    "pagesCount": 1,
+    "pagesCount": 3,
     "featuresCount": 3,
-    "timestamp": "2026-06-25 08:30:46",
+    "timestamp": "2026-06-25 11:24:37",
     "pages": [
       {
         "name": "Landing Home",
         "purpose": "Serves as the main gateway and interface for path /",
+        "screenshotDesc": "Clean responsive design featuring modern UI layout blocks."
+      },
+      {
+        "name": "Landing Page",
+        "purpose": "Serves as the main gateway and interface for path /",
+        "screenshotDesc": "Clean responsive design featuring modern UI layout blocks."
+      },
+      {
+        "name": "Ideas",
+        "purpose": "Serves as the main gateway and interface for path /ideas",
         "screenshotDesc": "Clean responsive design featuring modern UI layout blocks."
       }
     ],
@@ -1974,7 +2062,7 @@
         "type": "input",
         "data": {
           "label": "Explore Platform",
-          "description": "User arrives at the Example landing route."
+          "description": "User arrives at the Pinterest landing route."
         },
         "position": {
           "x": 250,
@@ -2040,7 +2128,7 @@
     ],
     "tables": [
       {
-        "name": "example_analytics_logs",
+        "name": "pinterest_analytics_logs",
         "columns": [
           {
             "name": "id",
@@ -2065,45 +2153,50 @@
     "infraMetrics": [
       {
         "label": "Estimated Monthly Active Users",
-        "value": "30k",
-        "description": "Small SaaS / landing page scale capacity"
+        "value": "800k",
+        "description": "Standard portal scalability demands"
       },
       {
         "label": "Storage Size Requirement",
-        "value": "100 GB",
-        "description": "Minimal asset uploads hosting requirements"
+        "value": "4.5 TB",
+        "description": "Media assets storage + transactions indexing databases"
       },
       {
         "label": "Bandwidth Capacity",
-        "value": "80 Mbps",
-        "description": "Static page deliverable CDN bandwidth limits"
+        "value": "400 Mbps",
+        "description": "Mid-level static files distribution CDN bandwidth"
       },
       {
         "label": "Estimated Database Nodes",
-        "value": "1 Node",
-        "description": "Single standalone cloud Postgres server instance"
+        "value": "3 Nodes",
+        "description": "Primary master node with dual read replicas setups"
       }
     ],
     "costs": [
       {
         "category": "Compute",
-        "resource": "Virtual server instance (e.g. AWS EC2 t3.medium)",
-        "cost": 20
+        "resource": "Kubernetes containers cluster nodes (2x m5.large)",
+        "cost": 220
       },
       {
         "category": "Database",
-        "resource": "AWS RDS Single-AZ instance",
-        "cost": 15
+        "resource": "AWS RDS PostgreSQL replica pair instance",
+        "cost": 180
+      },
+      {
+        "category": "Caching",
+        "resource": "AWS ElastiCache Redis standalone container",
+        "cost": 60
       },
       {
         "category": "Storage & CDN",
-        "resource": "AWS S3 + CloudFront data transfer rates",
-        "cost": 10
+        "resource": "S3 hosting & Edge CDN caching transfer",
+        "cost": 90
       },
       {
-        "category": "Monitoring & Logs",
-        "resource": "Basic server metrics & alerts",
-        "cost": 5
+        "category": "Monitoring",
+        "resource": "Datadog / Prometheus log collectors agent",
+        "cost": 50
       }
     ],
     "techStack": [

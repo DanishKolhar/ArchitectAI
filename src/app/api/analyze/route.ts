@@ -1,5 +1,6 @@
 import { NextRequest } from "next/server";
-import { chromium } from "playwright";
+import { chromium } from "playwright-core";
+import chromiumBinary from "@sparticuz/chromium";
 import { callGemini, GeminiImage } from "@/lib/gemini";
 import { saveReport, getReportById } from "@/lib/reportStore";
 import { ProjectReport, FlowNode, FlowEdge } from "@/lib/mockData";
@@ -73,34 +74,34 @@ export async function POST(request: NextRequest) {
         cachedTime = new Date(cachedReport.timestamp.replace(" ", "T") + "Z").getTime();
       }
       const timeDiff = Date.now() - cachedTime;
-      
+
       // Check 24-hour TTL (24h = 86400000 ms)
       if (timeDiff < 24 * 60 * 60 * 1000) {
         const elapsedHours = (timeDiff / (1000 * 60 * 60)).toFixed(1);
         console.log(`CACHE HIT: Found valid report for ${targetDomain} (generated ${elapsedHours} hours ago)`);
-        
+
         // Return instant response stream for cache hit
         const responseStream = new ReadableStream({
           start(controller) {
             controller.enqueue(
-              encoder.encode(JSON.stringify({ 
-                type: "log", 
-                step: 1, 
-                message: `CACHE HIT: Found valid report for ${targetDomain} (generated ${elapsedHours} hours ago)` 
+              encoder.encode(JSON.stringify({
+                type: "log",
+                step: 1,
+                message: `CACHE HIT: Found valid report for ${targetDomain} (generated ${elapsedHours} hours ago)`
               }) + "\n")
             );
             controller.enqueue(
-              encoder.encode(JSON.stringify({ 
-                type: "log", 
-                step: 8, 
-                message: `Bypassing sandbox crawler. Delivering cached specification report...` 
+              encoder.encode(JSON.stringify({
+                type: "log",
+                step: 8,
+                message: `Bypassing sandbox crawler. Delivering cached specification report...`
               }) + "\n")
             );
             controller.enqueue(
-              encoder.encode(JSON.stringify({ 
-                type: "complete", 
-                reportId, 
-                report: cachedReport 
+              encoder.encode(JSON.stringify({
+                type: "complete",
+                reportId,
+                report: cachedReport
               }) + "\n")
             );
             controller.close();
@@ -173,16 +174,27 @@ export async function POST(request: NextRequest) {
         const crawlStart = performance.now();
         sendLog(1, `Initializing Playwright sandbox crawler...`);
         sendLog(1, `Target destination URL: ${targetUrl}`);
-        
+
         const defaultUserAgent = "ArchitectAI-Crawler/1.4";
         const userAgentString = agent || defaultUserAgent;
         sendLog(1, `Setting User-Agent: ${userAgentString}`);
 
         // Launch Browser
+        // Launch Browser (Vercel + Localhost Compatible)
         browser = await chromium.launch({
-          headless: true
+          executablePath:
+            process.env.VERCEL === "1"
+              ? await chromiumBinary.executablePath()
+              : undefined,
+
+          args:
+            process.env.VERCEL === "1"
+              ? chromiumBinary.args
+              : [],
+
+          headless: true,
         });
-        
+
         const context = await browser.newContext({
           userAgent: userAgentString,
           viewport: { width: 1280, height: 800 }
@@ -205,10 +217,10 @@ export async function POST(request: NextRequest) {
           await page.goto(targetUrl, { waitUntil: "networkidle", timeout: 25000 });
         } catch {
           sendLog(1, `Networkidle timeout, waiting for page load state...`);
-          await page.waitForLoadState("load", { timeout: 10000 }).catch(() => {});
+          await page.waitForLoadState("load", { timeout: 10000 }).catch(() => { });
         }
         // Extra hydration delay to allow dynamic JS to load/render links
-        await page.waitForTimeout(2000).catch(() => {});
+        await page.waitForTimeout(2000).catch(() => { });
 
         const pageTitle = await page.title();
         sendLog(1, `Successfully loaded landing page: "${pageTitle}"`);
@@ -221,16 +233,16 @@ export async function POST(request: NextRequest) {
 
         const urlObj = new URL(targetUrl);
         const baseHostnameNorm = urlObj.hostname.replace("www.", "").toLowerCase();
-        
+
         const uniqueLinks = Array.from(new Set(rawLinks)).filter(link => {
           try {
             if (!link) return false;
             // Resolve relative link relative to targetUrl
             const linkUrl = new URL(link, targetUrl);
             const linkHostnameNorm = linkUrl.hostname.replace("www.", "").toLowerCase();
-            
+
             if (linkHostnameNorm !== baseHostnameNorm) return false;
-            
+
             // Exclude static assets
             const pathParts = linkUrl.pathname.split("/");
             const lastPart = pathParts[pathParts.length - 1];
@@ -247,7 +259,7 @@ export async function POST(request: NextRequest) {
         });
 
         sendLog(1, `Found ${uniqueLinks.length} total local routes. Filtering unique page paths...`);
-        
+
         // Choose up to `depth` pages to crawl
         const pagesToCrawl = [targetUrl];
         for (const l of uniqueLinks) {
@@ -271,17 +283,17 @@ export async function POST(request: NextRequest) {
         for (let i = 0; i < pagesToCrawl.length; i++) {
           const currentUrl = pagesToCrawl[i];
           const currentPath = new URL(currentUrl).pathname;
-          
+
           sendLog(2, `Loading viewport canvas for: ${currentPath}`);
-          
+
           if (i > 0) {
             await page.goto(currentUrl, { waitUntil: "networkidle", timeout: 20000 }).catch(async () => {
-              await page.waitForLoadState("load", { timeout: 10000 }).catch(() => {});
+              await page.waitForLoadState("load", { timeout: 10000 }).catch(() => { });
             });
-            await page.waitForTimeout(1000).catch(() => {});
+            await page.waitForTimeout(1000).catch(() => { });
           } else {
-            await page.waitForLoadState("networkidle", { timeout: 10000 }).catch(() => {});
-            await page.waitForTimeout(1000).catch(() => {});
+            await page.waitForLoadState("networkidle", { timeout: 10000 }).catch(() => { });
+            await page.waitForTimeout(1000).catch(() => { });
           }
 
           // Capture screenshot
@@ -382,10 +394,10 @@ export async function POST(request: NextRequest) {
         } catch (geminiError) {
           const errorMsg = geminiError instanceof Error ? geminiError.message : String(geminiError);
           sendLog(3, `Warning: Gemini API call failed (${errorMsg}). Building dynamic fallback report...`);
-          
+
           const domainName = targetDomain.split(".")[0];
           const friendlyName = domainName.charAt(0).toUpperCase() + domainName.slice(1);
-          
+
           batchResult = {
             website_name: friendlyName,
             website_type: "Dynamic Web Application & Platform Portal",
@@ -460,7 +472,7 @@ export async function POST(request: NextRequest) {
 
         // 5. Backend Inference & Reasoning (Optimization #3)
         sendLog(5, `Mapping user transition flow diagram nodes...`);
-        
+
         // Map user flow nodes vertically
         const flowNodes: FlowNode[] = batchResult.user_journey.map((step, index) => {
           const typeVal = index === 0 ? "input" : index === batchResult.user_journey.length - 1 ? "output" : "default";
@@ -484,7 +496,7 @@ export async function POST(request: NextRequest) {
         sendLog(5, `User flow mapping constructed successfully.`);
 
         sendLog(6, `Inferring backend service containers structure...`);
-        
+
         // Infer dependencies deterministically based on service scope names
         const inferredServices = batchResult.architecture_hints.map(hint => {
           const nameLower = hint.service_name.toLowerCase();
@@ -523,7 +535,7 @@ export async function POST(request: NextRequest) {
         sendLog(6, `Backend service containers mapped successfully.`);
 
         sendLog(7, `Compiling relational database tables schema models...`);
-        
+
         // Map database tables directly from database hints
         const dbTables = batchResult.database_hints.map(t => ({
           name: t.table_name,
@@ -537,11 +549,11 @@ export async function POST(request: NextRequest) {
         sendLog(7, `Relational entity diagram compiled.`);
 
         sendLog(8, `Calculating infrastructure metrics and monthly pricing footprints...`);
-        
+
         // Classify product scale deterministically (Optimization #3)
         const pagesCount = pagesToCrawl.length || batchResult.pages.length;
         const featuresCount = batchResult.features.length;
-        
+
         let scaleTier: "low" | "medium" | "high" = "medium";
         if (pagesCount <= 2 && featuresCount <= 3) {
           scaleTier = "low";
@@ -551,7 +563,7 @@ export async function POST(request: NextRequest) {
 
         let infraMetrics = [];
         let costs = [];
-        
+
         if (scaleTier === "low") {
           infraMetrics = [
             { label: "Estimated Monthly Active Users", value: "30k", description: "Small SaaS / landing page scale capacity" },
@@ -633,7 +645,7 @@ export async function POST(request: NextRequest) {
         const totalTime = ((performance.now() - totalStartTime) / 1000).toFixed(2);
         sendLog(8, `Analysis finalized! Packaging and delivering report...`);
         sendLog(8, `TOTAL METRICS: Total processing took ${totalTime} seconds.`);
-        
+
         sendComplete(reportId, finalReport);
       } catch (err) {
         const errMsg = err instanceof Error ? err.message : "An unexpected error occurred during analysis pipeline.";
@@ -641,7 +653,7 @@ export async function POST(request: NextRequest) {
         sendError(errMsg);
       } finally {
         if (browser) {
-          await browser.close().catch(() => {});
+          await browser.close().catch(() => { });
         }
         try {
           controller.close();
