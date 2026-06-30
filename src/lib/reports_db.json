@@ -2216,5 +2216,831 @@
         "reason": "Static optimization headers and cached distribution edge routing."
       }
     ]
+  },
+  "kpit.com": {
+    "id": "kpit.com",
+    "url": "https://www.kpit.com/",
+    "name": "KPIT",
+    "industry": "Automotive & Mobility Software Engineering, Technology Consulting, R&D Services",
+    "productType": "Corporate Website / B2B Technology Solutions Provider",
+    "pagesCount": 3,
+    "featuresCount": 6,
+    "timestamp": "2026-06-26 14:16:02",
+    "pages": [
+      {
+        "name": "Global Navigation Header",
+        "purpose": "Provides primary navigation, branding, language selection, search access, and a call-to-action for contacting the company, acting as a persistent UI element across the site.",
+        "screenshotDesc": "Top-level navigation bar with KPIT logo on the left, primary menu items (Mobility, Expertise, Insights, Company, Careers, Investors) as dropdowns, followed by language selector, search icon, and a 'Contact' button. A smaller top bar shows 'KPIT Worldwide' and 'Happenings at KPIT'. The main content area is empty in the first screenshot, suggesting a generic page state or initial load."
+      },
+      {
+        "name": "KPIT Worldwide / Global Presence Page",
+        "purpose": "To inform visitors about KPIT's global reach, engineering centers, and strategic presence in key markets, emphasizing its 'Near You, With You' philosophy.",
+        "screenshotDesc": "Contains the global navigation header. Below it, a breadcrumb 'Home > KPIT Worldwide' is present. The main content features a large headline 'Near You, With You' and a paragraph detailing KPIT's engineering centers in Europe, USA, Japan, China, Thailand, and India, and its role in the automotive and mobility ecosystem. A cookie consent banner is visible at the bottom."
+      },
+      {
+        "name": "Regional / Industry-Specific Solutions Page (German)",
+        "purpose": "To present specific solutions or insights tailored to a particular region (e.g., China) or industry challenge within the automotive sector, delivered in the user's selected language (German in this case).",
+        "screenshotDesc": "Displays the global navigation header, with the language selector prominently set to 'German'. The main content area features a large German headline 'Herausforderungen für chinesische OEMs in einem globalen Automobilumfeld meistern' (Mastering challenges for Chinese OEMs in a global automotive environment) and a supporting paragraph, also in German, about delivering first-class, agile, competent, and scalable software solutions for the automotive industry."
+      }
+    ],
+    "features": [
+      {
+        "name": "Global Navigation System",
+        "confidence": 100,
+        "description": "A persistent header providing access to key sections like 'Mobility', 'Expertise', 'Insights', 'Company', 'Careers', and 'Investors', with implied dropdowns for sub-navigation. This system is crucial for site exploration and communicating the company's information architecture and offerings."
+      },
+      {
+        "name": "Multi-language / Localization Support",
+        "confidence": 100,
+        "description": "Allows users to switch between different languages (e.g., English, German shown) for website content, indicated by a prominent language selector in the header with flag icons. This caters to a global audience and enables the delivery of region-specific or language-specific content, as seen in the German content page."
+      },
+      {
+        "name": "Cookie Consent Management",
+        "confidence": 100,
+        "description": "A banner at the bottom of the page informs users about cookie usage for experience enhancement, traffic analysis, and targeted content, providing options to view 'Cookie settings' and an 'Accept' button. This feature ensures compliance with privacy regulations like GDPR or CCPA."
+      },
+      {
+        "name": "Enterprise Content Management System (CMS)",
+        "confidence": 90,
+        "description": "The consistent global header, structured page layouts, dynamic text content (headlines, paragraphs), breadcrumbs, and multi-language capabilities strongly suggest the use of a robust CMS for managing content, translations, and publishing workflows across various pages and regions effectively."
+      },
+      {
+        "name": "Global Search Functionality",
+        "confidence": 90,
+        "description": "A prominent magnifying glass icon in the header indicates a site-wide search capability, allowing users to quickly find specific information, articles, services, or insights within the extensive corporate website, which is common for large B2B sites."
+      },
+      {
+        "name": "Call-to-Action (Contact)",
+        "confidence": 100,
+        "description": "A clear 'Contact' button is prominently placed in the primary navigation header, providing a direct and accessible pathway for potential clients, partners, or job seekers to initiate communication or inquiries with KPIT."
+      }
+    ],
+    "flowNodes": [
+      {
+        "id": "1",
+        "type": "input",
+        "data": {
+          "label": "Arrive on Website & Acknowledge Cookies",
+          "description": "User lands on a KPIT page, is presented with a cookie consent banner, and either accepts cookies or navigates to settings."
+        },
+        "position": {
+          "x": 250,
+          "y": 0
+        }
+      },
+      {
+        "id": "2",
+        "type": "default",
+        "data": {
+          "label": "Explore Global Navigation",
+          "description": "User interacts with the main navigation menu (e.g., 'Mobility', 'Expertise', 'Insights') to understand the company's offerings and areas of focus."
+        },
+        "position": {
+          "x": 250,
+          "y": 120
+        }
+      },
+      {
+        "id": "3",
+        "type": "default",
+        "data": {
+          "label": "Access Regional/Specific Information",
+          "description": "User navigates to a page detailing KPIT's global presence or a specific solution/insight relevant to their interest, potentially identified via breadcrumbs or direct links."
+        },
+        "position": {
+          "x": 250,
+          "y": 240
+        }
+      },
+      {
+        "id": "4",
+        "type": "default",
+        "data": {
+          "label": "Change Language (Optional)",
+          "description": "User, if not viewing content in their preferred language, utilizes the language selector to switch to a different locale (e.g., German to English or vice-versa) to consume content."
+        },
+        "position": {
+          "x": 250,
+          "y": 360
+        }
+      },
+      {
+        "id": "5",
+        "type": "output",
+        "data": {
+          "label": "Initiate Contact",
+          "description": "User decides to get in touch with KPIT and clicks the 'Contact' button in the header, leading to a contact form or relevant contact details page."
+        },
+        "position": {
+          "x": 250,
+          "y": 480
+        }
+      }
+    ],
+    "flowEdges": [
+      {
+        "id": "e1-2",
+        "source": "1",
+        "target": "2",
+        "animated": true
+      },
+      {
+        "id": "e2-3",
+        "source": "2",
+        "target": "3",
+        "animated": true
+      },
+      {
+        "id": "e3-4",
+        "source": "3",
+        "target": "4",
+        "animated": true
+      },
+      {
+        "id": "e4-5",
+        "source": "4",
+        "target": "5",
+        "animated": true
+      }
+    ],
+    "services": [
+      {
+        "name": "Content Management Service",
+        "purpose": "Manages all website content (pages, articles, media), provides authoring tools, version control, and publishing workflows. It would handle content translation integration and deliver localized content.",
+        "tech": "Java (for AEM), .NET (for Sitecore), PHP (for WordPress), or a Node.js/Go backend with a headless CMS.",
+        "dependencies": [
+          "PostgreSQL"
+        ]
+      },
+      {
+        "name": "Localization & Language Service",
+        "purpose": "Dedicated to managing translations, locale-specific content variations, and serving the correct language version of pages and UI elements based on user preferences or detected location. Integrates closely with the Content Management Service.",
+        "tech": "Node.js, Go, Python (as a microservice) or built-in robust CMS capabilities.",
+        "dependencies": [
+          "PostgreSQL"
+        ]
+      },
+      {
+        "name": "UI Rendering Service (Frontend Application)",
+        "purpose": "Responsible for serving the client-side application, handling dynamic rendering of pages, navigation, and all user interactions. It consumes content and data from the Content Management and other backend services.",
+        "tech": "React, Angular, Vue.js (frontend framework served by Nginx or a Node.js server).",
+        "dependencies": [
+          "PostgreSQL"
+        ]
+      }
+    ],
+    "tables": [
+      {
+        "name": "WebsitePages",
+        "columns": [
+          {
+            "name": "page_id",
+            "type": "UUID",
+            "key": "PK",
+            "refTable": ""
+          },
+          {
+            "name": "slug",
+            "type": "VARCHAR(255)",
+            "key": "",
+            "refTable": ""
+          },
+          {
+            "name": "template_id",
+            "type": "UUID",
+            "key": "FK",
+            "refTable": "PageTemplates"
+          },
+          {
+            "name": "last_published_at",
+            "type": "TIMESTAMP",
+            "key": "",
+            "refTable": ""
+          },
+          {
+            "name": "status",
+            "type": "VARCHAR(50)",
+            "key": "",
+            "refTable": ""
+          }
+        ]
+      },
+      {
+        "name": "ContentBlocks",
+        "columns": [
+          {
+            "name": "block_id",
+            "type": "UUID",
+            "key": "PK",
+            "refTable": ""
+          },
+          {
+            "name": "page_id",
+            "type": "UUID",
+            "key": "FK",
+            "refTable": "WebsitePages"
+          },
+          {
+            "name": "block_type",
+            "type": "VARCHAR(50)",
+            "key": "",
+            "refTable": ""
+          },
+          {
+            "name": "order_index",
+            "type": "INT",
+            "key": "",
+            "refTable": ""
+          },
+          {
+            "name": "content_json",
+            "type": "JSONB",
+            "key": "",
+            "refTable": ""
+          }
+        ]
+      },
+      {
+        "name": "WebsiteLanguages",
+        "columns": [
+          {
+            "name": "lang_id",
+            "type": "UUID",
+            "key": "PK",
+            "refTable": ""
+          },
+          {
+            "name": "locale_code",
+            "type": "VARCHAR(10)",
+            "key": "",
+            "refTable": ""
+          },
+          {
+            "name": "language_name",
+            "type": "VARCHAR(50)",
+            "key": "",
+            "refTable": ""
+          },
+          {
+            "name": "flag_icon_url",
+            "type": "VARCHAR(255)",
+            "key": "",
+            "refTable": ""
+          }
+        ]
+      },
+      {
+        "name": "ContentTranslations",
+        "columns": [
+          {
+            "name": "translation_id",
+            "type": "UUID",
+            "key": "PK",
+            "refTable": ""
+          },
+          {
+            "name": "block_id",
+            "type": "UUID",
+            "key": "FK",
+            "refTable": "ContentBlocks"
+          },
+          {
+            "name": "lang_id",
+            "type": "UUID",
+            "key": "FK",
+            "refTable": "WebsiteLanguages"
+          },
+          {
+            "name": "translated_content_json",
+            "type": "JSONB",
+            "key": "",
+            "refTable": ""
+          },
+          {
+            "name": "last_modified_at",
+            "type": "TIMESTAMP",
+            "key": "",
+            "refTable": ""
+          }
+        ]
+      },
+      {
+        "name": "KPITGlobalLocations",
+        "columns": [
+          {
+            "name": "location_id",
+            "type": "UUID",
+            "key": "PK",
+            "refTable": ""
+          },
+          {
+            "name": "name",
+            "type": "VARCHAR(100)",
+            "key": "",
+            "refTable": ""
+          },
+          {
+            "name": "type",
+            "type": "VARCHAR(50)",
+            "key": "",
+            "refTable": ""
+          },
+          {
+            "name": "country",
+            "type": "VARCHAR(100)",
+            "key": "",
+            "refTable": ""
+          },
+          {
+            "name": "description_key",
+            "type": "VARCHAR(255)",
+            "key": "",
+            "refTable": ""
+          }
+        ]
+      }
+    ],
+    "infraMetrics": [
+      {
+        "label": "Estimated Monthly Active Users",
+        "value": "800k",
+        "description": "Standard portal scalability demands"
+      },
+      {
+        "label": "Storage Size Requirement",
+        "value": "4.5 TB",
+        "description": "Media assets storage + transactions indexing databases"
+      },
+      {
+        "label": "Bandwidth Capacity",
+        "value": "400 Mbps",
+        "description": "Mid-level static files distribution CDN bandwidth"
+      },
+      {
+        "label": "Estimated Database Nodes",
+        "value": "3 Nodes",
+        "description": "Primary master node with dual read replicas setups"
+      }
+    ],
+    "costs": [
+      {
+        "category": "Compute",
+        "resource": "Kubernetes containers cluster nodes (2x m5.large)",
+        "cost": 220
+      },
+      {
+        "category": "Database",
+        "resource": "AWS RDS PostgreSQL replica pair instance",
+        "cost": 180
+      },
+      {
+        "category": "Caching",
+        "resource": "AWS ElastiCache Redis standalone container",
+        "cost": 60
+      },
+      {
+        "category": "Storage & CDN",
+        "resource": "S3 hosting & Edge CDN caching transfer",
+        "cost": 90
+      },
+      {
+        "category": "Monitoring",
+        "resource": "Datadog / Prometheus log collectors agent",
+        "cost": 50
+      }
+    ],
+    "techStack": [
+      {
+        "category": "Frontend",
+        "name": "React / Angular / Vue.js",
+        "reason": "Modern, large-scale corporate websites often utilize component-based JavaScript frameworks for rich user interfaces, efficient content rendering, and interactive elements. This approach supports a responsive and dynamic user experience."
+      },
+      {
+        "category": "Backend",
+        "name": "Adobe Experience Manager (AEM) / Sitecore / WordPress VIP",
+        "reason": "The consistent branding, multi-language support, global content delivery, and structured content management point towards an enterprise-grade CMS. These platforms offer robust features for content authoring, localization workflows, and scalability required by a global B2B company."
+      },
+      {
+        "category": "Static Assets / Content Delivery",
+        "name": "Cloudflare / Akamai / AWS CloudFront",
+        "reason": "Given KPIT's global presence, a Content Delivery Network (CDN) is essential for fast delivery of static assets (images, CSS, JavaScript) and cached content to users worldwide, ensuring optimal page load times and reducing latency."
+      },
+      {
+        "category": "Analytics & Compliance",
+        "name": "Google Analytics / Adobe Analytics / OneTrust",
+        "reason": "The explicit cookie consent banner mentioning site traffic analysis and targeted content implies the use of a web analytics platform. Solutions like OneTrust are commonly used for managing cookie consent and ensuring compliance with data privacy regulations."
+      }
+    ]
+  },
+  "netflix.com": {
+    "id": "netflix.com",
+    "url": "https://netflix.com",
+    "name": "Netflix",
+    "industry": "Media & Entertainment / Digital Content Distribution",
+    "productType": "Streaming Service / Subscription Video on Demand (SVOD) Platform",
+    "pagesCount": 3,
+    "featuresCount": 5,
+    "timestamp": "2026-06-26 14:10:58",
+    "pages": [
+      {
+        "name": "Landing Page / Pre-Login Homepage",
+        "purpose": "To attract new users, provide an overview of the service's value proposition, showcase content, and offer clear entry points for signing up or signing in.",
+        "screenshotDesc": "The page features a full-screen background montage of diverse movie and show posters. A prominent central headline 'Unlimited movies, shows, and more' highlights the core offering, accompanied by pricing details ('Starts at ₹149. Cancel at any time.') and a call-to-action to enter an email address for membership. The top right corner contains a language selector (e.g., 'English') and a 'Sign In' button. A subtle 'Trending Now' section is partially visible at the bottom."
+      },
+      {
+        "name": "Account Access / Sign-in or Sign-up Initiation",
+        "purpose": "To serve as a unified initial step for users to either sign in to an existing account or begin the process of creating a new one, by providing their primary identifier (email or mobile number).",
+        "screenshotDesc": "This page has a minimalist dark background with a centrally aligned white content block. It displays a heading 'Enter your info to sign in or get started with a new account.', an input field labeled 'Email or mobile number', and a 'Continue' button. Below the button, there's a 'Get Help' dropdown and a clear notice stating the page is protected by Google reCAPTCHA."
+      }
+    ],
+    "features": [
+      {
+        "name": "Subscription-based Content Access",
+        "confidence": 99,
+        "description": "The platform operates on a subscription model, as indicated by the 'Starts at ₹149. Cancel at any time.' text on the landing page. Users pay a recurring fee to gain unlimited access to the entire content library (movies, shows, and more)."
+      },
+      {
+        "name": "Multi-language UI Support",
+        "confidence": 95,
+        "description": "A language selector is prominently displayed in the top right corner of the landing page, allowing users to switch the interface language (e.g., 'English'). This indicates support for internationalization and catering to a diverse global audience."
+      },
+      {
+        "name": "Unified Account Entry Point",
+        "confidence": 98,
+        "description": "The 'Account Access' page uses a single input field ('Email or mobile number') to initiate both sign-in for existing users and the first step of account creation for new users. This streamlines the user journey by consolidating the entry process."
+      },
+      {
+        "name": "Content Teasers & Discovery",
+        "confidence": 90,
+        "description": "The landing page features a dynamic background montage of various movie and show posters, along with a 'Trending Now' section hint. This design serves to visually entice prospective subscribers and give a glimpse into the breadth of available content, aiding in pre-login content discovery."
+      },
+      {
+        "name": "Bot Protection (reCAPTCHA)",
+        "confidence": 100,
+        "description": "The login/signup initiation page explicitly states 'This page is protected by Google reCAPTCHA'. This feature is implemented to prevent automated bot attacks, such as credential stuffing, spam sign-ups, and other forms of abuse, enhancing the security of user accounts."
+      }
+    ],
+    "flowNodes": [
+      {
+        "id": "1",
+        "type": "input",
+        "data": {
+          "label": "Land on Promotional Homepage",
+          "description": "A user arrives at the Netflix homepage, where they are presented with a compelling overview of the service, its benefits, and a visual representation of the content library."
+        },
+        "position": {
+          "x": 250,
+          "y": 0
+        }
+      },
+      {
+        "id": "2",
+        "type": "default",
+        "data": {
+          "label": "Initiate Sign-up or Sign-in",
+          "description": "The user decides to either subscribe (via the email input and 'Get Started' button) or sign in (via the 'Sign In' button) to proceed with accessing the platform."
+        },
+        "position": {
+          "x": 250,
+          "y": 120
+        }
+      },
+      {
+        "id": "3",
+        "type": "default",
+        "data": {
+          "label": "Provide Primary Identifier",
+          "description": "On the account access page, the user enters their email address or mobile number, which serves as the unique identifier to locate an existing account or to start the registration for a new one."
+        },
+        "position": {
+          "x": 250,
+          "y": 240
+        }
+      },
+      {
+        "id": "4",
+        "type": "output",
+        "data": {
+          "label": "Continue to Authentication/Registration",
+          "description": "The user clicks 'Continue' after entering their identifier, which will lead them to the next step, likely involving password entry for sign-in or further personal details/payment setup for new account registration."
+        },
+        "position": {
+          "x": 250,
+          "y": 360
+        }
+      }
+    ],
+    "flowEdges": [
+      {
+        "id": "e1-2",
+        "source": "1",
+        "target": "2",
+        "animated": true
+      },
+      {
+        "id": "e2-3",
+        "source": "2",
+        "target": "3",
+        "animated": true
+      },
+      {
+        "id": "e3-4",
+        "source": "3",
+        "target": "4",
+        "animated": true
+      }
+    ],
+    "services": [
+      {
+        "name": "Authentication Service",
+        "purpose": "Manages user login, signup, password resets, and token generation (e.g., JWTs) to secure user sessions and provide identity verification across the platform.",
+        "tech": "Java (Spring Security) or Node.js (Passport.js)",
+        "dependencies": [
+          "PostgreSQL"
+        ]
+      },
+      {
+        "name": "Account Management Service",
+        "purpose": "Handles user profiles, personal settings, contact information (email/mobile), and potentially integrates with the Subscription Service for membership details.",
+        "tech": "Python (Django REST Framework) or Go",
+        "dependencies": [
+          "PostgreSQL"
+        ]
+      },
+      {
+        "name": "Subscription & Billing Service",
+        "purpose": "Manages membership plans, payment processing, billing cycles, renewals, and cancellations for all user subscriptions.",
+        "tech": "Java or Ruby on Rails",
+        "dependencies": [
+          "Stripe API",
+          "PostgreSQL"
+        ]
+      },
+      {
+        "name": "Content Catalog Service",
+        "purpose": "Stores and provides metadata for all movies, TV shows, genres, actors, ratings, and localized titles/descriptions available on the platform.",
+        "tech": "Go or Java (for high-throughput read operations)",
+        "dependencies": [
+          "Elasticsearch",
+          "PostgreSQL"
+        ]
+      },
+      {
+        "name": "UI Gateway Service",
+        "purpose": "Acts as an API gateway, aggregating requests from the frontend client, routing them to appropriate backend microservices, and handling cross-cutting concerns like authentication/authorization enforcement, logging, and rate limiting.",
+        "tech": "Node.js (NestJS) or Nginx with Lua",
+        "dependencies": [
+          "PostgreSQL"
+        ]
+      }
+    ],
+    "tables": [
+      {
+        "name": "accounts",
+        "columns": [
+          {
+            "name": "account_id",
+            "type": "UUID",
+            "key": "PK",
+            "refTable": ""
+          },
+          {
+            "name": "email",
+            "type": "VARCHAR(255)",
+            "key": "UNIQUE",
+            "refTable": ""
+          },
+          {
+            "name": "mobile_number",
+            "type": "VARCHAR(20)",
+            "key": "UNIQUE",
+            "refTable": ""
+          },
+          {
+            "name": "password_hash",
+            "type": "VARCHAR(255)",
+            "key": "",
+            "refTable": ""
+          },
+          {
+            "name": "created_at",
+            "type": "TIMESTAMP",
+            "key": "",
+            "refTable": ""
+          },
+          {
+            "name": "updated_at",
+            "type": "TIMESTAMP",
+            "key": "",
+            "refTable": ""
+          },
+          {
+            "name": "locale_id",
+            "type": "UUID",
+            "key": "FK",
+            "refTable": "locales"
+          }
+        ]
+      },
+      {
+        "name": "memberships",
+        "columns": [
+          {
+            "name": "membership_id",
+            "type": "UUID",
+            "key": "PK",
+            "refTable": ""
+          },
+          {
+            "name": "account_id",
+            "type": "UUID",
+            "key": "FK",
+            "refTable": "accounts"
+          },
+          {
+            "name": "plan_id",
+            "type": "UUID",
+            "key": "FK",
+            "refTable": "subscription_plans"
+          },
+          {
+            "name": "start_date",
+            "type": "TIMESTAMP",
+            "key": "",
+            "refTable": ""
+          },
+          {
+            "name": "end_date",
+            "type": "TIMESTAMP",
+            "key": "",
+            "refTable": ""
+          },
+          {
+            "name": "status",
+            "type": "VARCHAR(50)",
+            "key": "",
+            "refTable": ""
+          },
+          {
+            "name": "renewal_date",
+            "type": "TIMESTAMP",
+            "key": "",
+            "refTable": ""
+          }
+        ]
+      },
+      {
+        "name": "subscription_plans",
+        "columns": [
+          {
+            "name": "plan_id",
+            "type": "UUID",
+            "key": "PK",
+            "refTable": ""
+          },
+          {
+            "name": "name",
+            "type": "VARCHAR(100)",
+            "key": "",
+            "refTable": ""
+          },
+          {
+            "name": "description",
+            "type": "TEXT",
+            "key": "",
+            "refTable": ""
+          },
+          {
+            "name": "monthly_price_inr",
+            "type": "DECIMAL(10,2)",
+            "key": "",
+            "refTable": ""
+          },
+          {
+            "name": "currency",
+            "type": "VARCHAR(3)",
+            "key": "",
+            "refTable": ""
+          },
+          {
+            "name": "max_screens",
+            "type": "INT",
+            "key": "",
+            "refTable": ""
+          },
+          {
+            "name": "resolution",
+            "type": "VARCHAR(50)",
+            "key": "",
+            "refTable": ""
+          }
+        ]
+      },
+      {
+        "name": "locales",
+        "columns": [
+          {
+            "name": "locale_id",
+            "type": "UUID",
+            "key": "PK",
+            "refTable": ""
+          },
+          {
+            "name": "language_code",
+            "type": "VARCHAR(10)",
+            "key": "UNIQUE",
+            "refTable": ""
+          },
+          {
+            "name": "display_name",
+            "type": "VARCHAR(100)",
+            "key": "",
+            "refTable": ""
+          },
+          {
+            "name": "currency_code",
+            "type": "VARCHAR(3)",
+            "key": "",
+            "refTable": ""
+          }
+        ]
+      }
+    ],
+    "infraMetrics": [
+      {
+        "label": "Estimated Monthly Active Users",
+        "value": "800k",
+        "description": "Standard portal scalability demands"
+      },
+      {
+        "label": "Storage Size Requirement",
+        "value": "4.5 TB",
+        "description": "Media assets storage + transactions indexing databases"
+      },
+      {
+        "label": "Bandwidth Capacity",
+        "value": "400 Mbps",
+        "description": "Mid-level static files distribution CDN bandwidth"
+      },
+      {
+        "label": "Estimated Database Nodes",
+        "value": "3 Nodes",
+        "description": "Primary master node with dual read replicas setups"
+      }
+    ],
+    "costs": [
+      {
+        "category": "Compute",
+        "resource": "Kubernetes containers cluster nodes (2x m5.large)",
+        "cost": 220
+      },
+      {
+        "category": "Database",
+        "resource": "AWS RDS PostgreSQL replica pair instance",
+        "cost": 180
+      },
+      {
+        "category": "Caching",
+        "resource": "AWS ElastiCache Redis standalone container",
+        "cost": 60
+      },
+      {
+        "category": "Storage & CDN",
+        "resource": "S3 hosting & Edge CDN caching transfer",
+        "cost": 90
+      },
+      {
+        "category": "Monitoring",
+        "resource": "Datadog / Prometheus log collectors agent",
+        "cost": 50
+      }
+    ],
+    "techStack": [
+      {
+        "category": "Frontend",
+        "name": "React.js / Angular / Vue.js",
+        "reason": "Modern streaming platforms typically use robust JavaScript frameworks for building interactive, single-page application (SPA) user interfaces, providing a smooth and responsive user experience."
+      },
+      {
+        "category": "Backend",
+        "name": "Java (Spring Boot) / Node.js / Go",
+        "reason": "These technologies are well-suited for building highly scalable, performant, and maintainable microservices, which are essential for handling the high traffic and diverse functionalities of a global streaming service."
+      },
+      {
+        "category": "Content Delivery Network (CDN)",
+        "name": "Akamai / Amazon CloudFront / Cloudflare",
+        "reason": "To deliver video content and static assets (like images and scripts) globally with low latency and high availability, a robust CDN is critical for a smooth streaming experience."
+      },
+      {
+        "category": "Security / Bot Protection",
+        "name": "Google reCAPTCHA",
+        "reason": "Explicitly mentioned on the login page, indicating its use to differentiate human users from bots, preventing automated attacks and spam."
+      },
+      {
+        "category": "Authentication",
+        "name": "JWT (JSON Web Tokens) / OAuth 2.0",
+        "reason": "Standard protocols for secure, stateless user authentication and authorization, enabling microservices to verify user identity and permissions efficiently."
+      }
+    ]
   }
 }

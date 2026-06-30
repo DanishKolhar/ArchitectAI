@@ -181,16 +181,19 @@ export async function POST(request: NextRequest) {
 
         // Launch Browser
         // Launch Browser (Vercel + Localhost Compatible)
-        browser = await chromium.launch({
-          executablePath:
-            process.env.VERCEL === "1"
-              ? await chromiumBinary.executablePath()
-              : undefined,
+        const isServerless =
+          process.env.VERCEL === "1" ||
+          process.env.RENDER === "true" ||
+          process.env.NODE_ENV === "production";
 
-          args:
-            process.env.VERCEL === "1"
-              ? chromiumBinary.args
-              : [],
+        browser = await chromium.launch({
+          executablePath: isServerless
+            ? await chromiumBinary.executablePath()
+            : undefined,
+
+          args: isServerless
+            ? chromiumBinary.args
+            : [],
 
           headless: true,
         });
